@@ -1,0 +1,70 @@
+# Base / Downside / Severe cases. Each case overrides inputs from data/<model>_inputs.yaml; anything not
+# listed keeps its base value. The same file drives the Python stress engine and the Case_Select
+# switch on each workbook's Inputs tab. All stress magnitudes are Illustrative analyst choices.
+
+property:
+  note: >-
+    Post-closing stress: the loan is held at its base-case size (Loan_Override is set to the base loan
+    by the stress engine) and operations, the exit and the retrofit underperform. SOFR shocks only bite
+    when the floating option (Debt_Option = 2) is selected.
+  cases:
+    Base: {}
+    Downside:
+      Vacancy_Rate: 0.07
+      Rent_Growth: 0.02
+      Expense_Growth: 0.035
+      Utility_Price_Growth: 0.035
+      Exit_Cap: 0.0625
+      SOFR_Shock: 0.01
+      HP_Capex_Per_Unit: 12500
+      COP_Heat: 2.3
+    Severe:
+      Vacancy_Rate: 0.10
+      Rent_Growth: 0.01
+      Expense_Growth: 0.04
+      Utility_Price_Growth: 0.05
+      Exit_Cap: 0.0675
+      SOFR_Shock: 0.02
+      HP_Capex_Per_Unit: 15000
+      COP_Heat: 2.0
+  hold_loan: true
+
+solar_storage:
+  note: >-
+    Rating-agency style: the operating case runs at one-year P90 (Downside) and one-year P99 (Severe)
+    output in every year against the debt schedule fixed at close, with a lower merchant tail. A rate
+    shock and an EPC overrun act at close: the first re-sizes the sculpted debt, the second is funded
+    with equity.
+  cases:
+    Base: {}
+    Downside:
+      Gen_Case_Z: 1.2816
+      Merchant_Shock: -0.25
+      Capex_Overrun: 0.10
+      Rate_Shock: 0.01
+    Severe:
+      Gen_Case_Z: 2.3263
+      Merchant_Shock: -0.50
+      Capex_Overrun: 0.20
+      Rate_Shock: 0.02
+  hold_loan: false
+
+# One-factor sensitivities (each lever alone, from the base case) for the tornado charts and memos.
+sensitivities:
+  property:
+    - {label: "Vacancy +5 pts", set: {Vacancy_Rate: 0.10}}
+    - {label: "Exit cap +50 bp", set: {Exit_Cap: 0.0625}}
+    - {label: "Rent growth -1.5 pts", set: {Rent_Growth: 0.015}}
+    - {label: "Expense growth +1 pt", set: {Expense_Growth: 0.04}}
+    - {label: "Heat pump capex +50%", set: {HP_Capex_Per_Unit: 15000}}
+    - {label: "Heat pump COP 2.0", set: {COP_Heat: 2.0}}
+    - {label: "No solar tax credit", set: {Solar_ITC: 0.0}}
+    - {label: "Floating rate, SOFR +200 bp", set: {Debt_Option: 2, SOFR_Shock: 0.02}}
+  solar_storage:
+    - {label: "P90 output (1-yr)", set: {Gen_Case_Z: 1.2816}}
+    - {label: "P99 output (1-yr)", set: {Gen_Case_Z: 2.3263}}
+    - {label: "Merchant tail -50%", set: {Merchant_Shock: -0.50}}
+    - {label: "EPC overrun +20%", set: {Capex_Overrun: 0.20}}
+    - {label: "Rate +200 bp at close", set: {Rate_Shock: 0.02}}
+    - {label: "No solar tax credit", set: {ITC_PV: 0.0}}
+    - {label: "Battery toll -25%", set: {Toll_Price: 9.0}}

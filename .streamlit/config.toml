@@ -1,0 +1,51 @@
+# Adapted from quantlab's dashboard theme; colours from the validated data-viz reference palette.
+[browser]
+gatherUsageStats = false
+
+[runner]
+magicEnabled = false
+
+[client]
+toolbarMode = "minimal"
+
+[theme]
+font = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+headingFont = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+headingFontWeights = [650, 600, 600, 600, 600, 600]
+headingFontSizes = ["1.9rem", "1.3rem", "1.05rem", "1rem", "0.95rem", "0.9rem"]
+baseFontSize = 15
+baseRadius = "0.5rem"
+showWidgetBorder = true
+metricValueFontSize = "1.5rem"
+metricValueFontWeight = 500
+
+[theme.light]
+primaryColor = "#2a78d6"
+backgroundColor = "#fcfcfb"
+secondaryBackgroundColor = "#f3f3f1"
+textColor = "#0b0b0b"
+borderColor = "#e3e2de"
+dataframeBorderColor = "#e3e2de"
+dataframeHeaderBackgroundColor = "#f0efec"
+linkColor = "#2a78d6"
+greenColor = "#0ca30c"
+redColor = "#d03b3b"
+blueColor = "#2a78d6"
+orangeColor = "#eb6834"
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a"]
+
+[theme.dark]
+primaryColor = "#3987e5"
+backgroundColor = "#1a1a19"
+secondaryBackgroundColor = "#232322"
+textColor = "#f0efec"
+borderColor = "#383835"
+dataframeBorderColor = "#383835"
+dataframeHeaderBackgroundColor = "#232322"
+linkColor = "#3987e5"
+greenColor = "#0ca30c"
+redColor = "#d03b3b"
+blueColor = "#3987e5"
+orangeColor = "#d95926"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70"]

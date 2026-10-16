@@ -1,0 +1,125 @@
+# Public sources behind the inputs. Each input in data/*_inputs.yaml cites one of these ids.
+# "retrieved" is the date the figure was read from the source for this model.
+
+estar_median:
+  citation: "ENERGY STAR Portfolio Manager, U.S. National Median Table (August 2024): Multifamily Housing site EUI 59.6 kBtu/ft2, source EUI 118.1"
+  url: https://portfoliomanager.energystar.gov/pdf/reference/US%20National%20Median%20Table.pdf
+  retrieved: 2026-10-15
+
+recs_2020:
+  citation: "EIA Residential Energy Consumption Survey 2020, end-use consumption tables (CE3.x) for apartments in buildings with 5+ units, by census region"
+  url: https://www.eia.gov/consumption/residential/data/2020/
+  retrieved: 2026-10-15
+
+eia_epa_2_10:
+  citation: "EIA Electric Power Annual, Table 2.10: District of Columbia average price to commercial customers, 17.07 cents/kWh (2024)"
+  url: https://www.eia.gov/electricity/annual/html/epa_02_10.html
+  retrieved: 2026-10-15
+
+eia_ng_dc:
+  citation: "EIA Natural Gas Navigator, District of Columbia price delivered to commercial consumers (N3020DC3), $14.36/Mcf (2025 annual, released 2026-09-30)"
+  url: https://www.eia.gov/dnav/ng/hist/n3020dc3a.htm
+  retrieved: 2026-10-15
+
+epa_ef_hub_2025:
+  citation: "EPA GHG Emission Factors Hub (January 2025), Table 1: natural gas 53.06 kg CO2, 1.0 g CH4, 0.10 g N2O per mmBtu; 0.001026 mmBtu/scf; GWP CH4 28, N2O 265"
+  url: https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf
+  retrieved: 2026-10-15
+
+egrid2022:
+  citation: "EPA eGRID2022 Summary Tables: total output emission rates, RFC East (RFCE) 660.3 lb CO2e/MWh; ERCOT All (ERCT) 774.3 lb CO2e/MWh; U.S. 827.5 lb CO2e/MWh"
+  url: https://www.epa.gov/system/files/documents/2024-01/egrid2022_summary_tables.pdf
+  retrieved: 2026-10-15
+
+atb_2024b_commercial_pv:
+  citation: "NREL/NLR Annual Technology Baseline 2024b, Commercial PV: CAPEX $1.78/Wdc (2023), fixed O&M ~$19/kWdc-yr; 200 kWdc flat-roof reference system"
+  url: https://atb.nlr.gov/electricity/2024b/commercial_pv
+  retrieved: 2026-10-15
+
+pvwatts_v8:
+  citation: "NREL/NLR PVWatts v8.5 API run, Washington DC (38.90, -77.03), fixed roof mount, tilt 10, azimuth 180, 14% losses, DC/AC 1.2: 1,317.7 kWh AC per kWdc per year"
+  url: https://developer.nlr.gov/docs/solar/pvwatts/v8/
+  retrieved: 2026-10-15
+
+hud_safmr_fy2026:
+  citation: "HUD FY2026 Small Area Fair Market Rents, Washington-Arlington-Alexandria HUD Metro FMR Area; DC ZIP 2BR SAFMRs $2,030 (20011) to $2,620 (20024), read via the fairmarketrentmap.com mirror of HUD data"
+  url: https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html
+  retrieved: 2026-10-15
+  data: {two_bed_low: 2030, two_bed_high: 2620, fiscal_year: 2026}
+
+dc_otr_tax:
+  citation: "DC Office of Tax and Revenue: Class 1A real property tax rate (residential, 3+ units) $0.85 per $100 of assessed value"
+  url: https://otr.cfo.dc.gov/page/real-property-tax-rates
+  retrieved: 2026-10-15
+
+doee_beps:
+  citation: "DC DOEE Building Energy Performance Standards Compliance Guidebook (Aug 2021) and Perkins Eastman BEPS guide: performance pathway = 20% site EUI reduction; penalty up to $10/ft2, capped at $7.5 million, prorated by progress. Cycle 2 (from 2027) assumed to carry the same structure."
+  url: https://doee.dc.gov/service/building-energy-performance-standards-beps
+  retrieved: 2026-10-15
+
+eqr_10k_2025:
+  citation: "Equity Residential FY2025 Form 10-K, dispositions: 13 consolidated rental properties sold at a 5.4% disposition yield (company-wide)"
+  url: https://www.sec.gov/Archives/edgar/data/906107/000119312526051433/eqr-20251231.htm
+  retrieved: 2026-10-15
+
+fred_dgs10:
+  citation: "FRED DGS10, 10-year Treasury constant maturity, 5.21% on 2026-10-13 (fetched with quantlab.data.sources.extra.fred_series)"
+  url: https://fred.stlouisfed.org/series/DGS10
+  retrieved: 2026-10-15
+
+fred_sofr:
+  citation: "FRED SOFR, Secured Overnight Financing Rate, 3.88% on 2026-10-14 (fetched with quantlab.data.sources.extra.fred_series)"
+  url: https://fred.stlouisfed.org/series/SOFR
+  retrieved: 2026-10-15
+
+lbnl_uss_2025:
+  citation: "Berkeley Lab, Utility-Scale Solar 2025 Edition (2024 data): installed cost $1.61/Wac national, $1.38/Wac ERCOT (slide 34); median O&M ~$11/kWac-yr; levelized PPA average $29/MWh, IQR $22-40 (slide 11); ERCOT solar curtailment 7.1% (slide 57); ERCOT solar market value $24/MWh vs $29 flat block, read from the slide-61 chart"
+  url: https://emp.lbl.gov/sites/default/files/2025-10/Utility%20Scale%20Solar%202025%20Edition%20Slides.pdf
+  retrieved: 2026-10-15
+  data: {ppa_avg: 29, ppa_iqr_low: 22, ppa_iqr_high: 40, ercot_lcoe_after_credit: 34, ercot_flat_block: 29,
+         national_market_value: 32, year: 2024}
+
+atb_2024b_pv:
+  citation: "NREL/NLR Annual Technology Baseline 2024b, Utility-Scale PV: CAPEX $1,430/kWac (2022), fixed O&M $22/kWac-yr (2023), ILR 1.34, degradation 0.7%/yr, 30-yr life, class 1-5 capacity factors 34.0%-28.3%"
+  url: https://atb.nlr.gov/electricity/2024b/utility-scale_pv
+  retrieved: 2026-10-15
+
+atb_2024b_bess:
+  citation: "NREL/NLR Annual Technology Baseline 2024b, Utility-Scale Battery Storage: fixed O&M 2.5% of capex per year (includes augmentation), 85% round-trip efficiency, 15-year life"
+  url: https://atb.nlr.gov/electricity/2024b/utility-scale_battery_storage
+  retrieved: 2026-10-15
+
+nlr_bess_2025:
+  citation: "Cole, Ramasamy & Turan, Cost Projections for Utility-Scale Battery Storage: 2025 Update (NREL/TP-6A40-93281): 2024 cost of a 4-hour system $334/kWh (2024$) = $241/kWh energy + $372/kW power"
+  url: https://docs.nlr.gov/docs/fy25osti/93281.pdf
+  retrieved: 2026-10-15
+
+asset:
+  citation: "Illustrative asset definition for this model (unit mix, size, deal terms). Not a real property or transaction."
+  url: ""
+  retrieved: 2026-10-15
+
+analyst:
+  citation: "Analyst estimate, stated in the input note. Not taken from a single published figure; treat as an assumption to stress."
+  url: ""
+  retrieved: 2026-10-15
+
+definition:
+  citation: "Unit conversion or definition (e.g. 12 months per year, 3,412.14 Btu per kWh, 2,204.62 lb per metric ton)."
+  url: ""
+  retrieved: 2026-10-15
+
+normal_quantiles:
+  citation: "Standard normal quantiles: z(0.90) = 1.2816, z(0.99) = 2.3263, used to turn a one-year generation uncertainty into P90 and P99 output"
+  url: ""
+  retrieved: 2026-10-15
+
+irc_tax:
+  citation: "Internal Revenue Code: 21% corporate rate (IRC 11(b)); depreciable basis reduced by 50% of an investment credit (IRC 50(c)(3))"
+  url: https://www.law.cornell.edu/uscode/text/26/11
+  retrieved: 2026-10-15
+
+irs_pub946:
+  citation: "IRS Publication 946, Table A-1: 5-year property, half-year convention: 20.00%, 32.00%, 19.20%, 11.52%, 11.52%, 5.76%"
+  url: https://www.irs.gov/publications/p946
+  retrieved: 2026-10-15

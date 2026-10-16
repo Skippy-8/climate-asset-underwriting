@@ -1,0 +1,88 @@
+# Inputs for the illustrative West Texas (ERCOT) solar + storage project financing.
+# Every value is tagged Sourced / Estimated / Illustrative / Definition and cites an id in data/sources.yaml.
+# Fractions are decimals. Money is nominal US$; benchmark costs are the sources' 2024 (or 2022/2023) dollars, unescalated.
+
+Project:
+  - {key: PV_MWac, label: Solar capacity (AC), value: 200, unit: MWac, tag: Illustrative, source: asset}
+  - {key: ILR, label: Inverter loading ratio (DC/AC), value: 1.34, unit: ratio, tag: Sourced, source: atb_2024b_pv}
+  - {key: BESS_MW, label: Battery power, value: 100, unit: MW, tag: Illustrative, source: asset}
+  - {key: BESS_Hours, label: Battery duration, value: 4, unit: hours, tag: Illustrative, source: asset}
+  - {key: PV_Life, label: Solar useful life, value: 30, unit: years, tag: Sourced, source: atb_2024b_pv, note: "Model columns cover 30 operating years"}
+  - {key: BESS_Life, label: Battery useful life, value: 15, unit: years, tag: Sourced, source: atb_2024b_bess, note: "No repowering assumed; battery cash flows stop after year 15"}
+
+Generation:
+  - {key: CF_P50, label: "Solar capacity factor, first year (ATB resource class 2)", value: 0.329, unit: "% (AC)", tag: Sourced, source: atb_2024b_pv, note: "West Texas mapped to class 2 (GHI 5.5-5.75); the mapping is a judgement"}
+  - {key: Curtailment, label: Curtailment loss, value: 0.071, unit: "% of output", tag: Sourced, source: lbnl_uss_2025, note: "ERCOT ISO-wide 2024; mostly West Texas"}
+  - {key: Degradation, label: Annual degradation, value: 0.007, unit: "%/yr", tag: Sourced, source: atb_2024b_pv}
+  - {key: Gen_Sigma_1yr, label: One-year generation uncertainty (1 sigma), value: 0.06, unit: "% of P50", tag: Estimated, source: analyst, note: "Inter-annual resource plus modelling uncertainty; EIA does not publish P-values"}
+  - {key: Z_P90, label: Normal quantile for P90, value: 1.2816, unit: z, tag: Definition, source: normal_quantiles}
+  - {key: Z_P99, label: Normal quantile for P99, value: 2.3263, unit: z, tag: Definition, source: normal_quantiles}
+
+Capital costs:
+  - {key: PV_Capex_Per_Wac, label: Solar installed cost (ERCOT, 2024 projects), value: 1.38, unit: $/Wac, tag: Sourced, source: lbnl_uss_2025}
+  - {key: BESS_Capex_Per_kWh, label: Battery installed cost (4-hour, 2024), value: 334, unit: $/kWh, tag: Sourced, source: nlr_bess_2025}
+  - {key: Owner_Dev_Pct, label: Development, owner and interconnection costs, value: 0.04, unit: "% of equipment capex", tag: Estimated, source: analyst}
+  - {key: Constr_Years, label: Construction period, value: 1, unit: years, tag: Illustrative, source: asset}
+  - {key: Avg_Draw, label: Average share of debt drawn during construction, value: 0.5, unit: "%", tag: Estimated, source: analyst}
+
+Operating costs:
+  - {key: PV_FOM_Per_kWac, label: Solar fixed O&M (all-in), value: 22, unit: $/kWac-yr, tag: Sourced, source: atb_2024b_pv, note: "ATB 2023 value; includes insurance, property tax and land per ATB scope"}
+  - {key: BESS_FOM_Pct, label: Battery fixed O&M incl. augmentation, value: 0.025, unit: "% of battery capex/yr", tag: Sourced, source: atb_2024b_bess}
+  - {key: Asset_Mgmt, label: Asset management and admin, value: 500000, unit: $/yr, tag: Estimated, source: analyst}
+  - {key: Opex_Escalation, label: Opex escalation, value: 0.025, unit: "%/yr", tag: Estimated, source: analyst}
+
+Revenue:
+  - {key: PPA_Price, label: Solar PPA price (as generated, flat), value: 51, unit: $/MWh, tag: Estimated, source: lbnl_uss_2025, note: "Solved (rounded) for an 8% after-tax sponsor equity IRR at benchmark capex and today's rates; ~27% above the top of the 2024 IQR ($22-40)"}
+  - {key: PPA_Escalator, label: PPA escalator, value: 0.0, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: PPA_Term, label: PPA term, value: 20, unit: years, tag: Estimated, source: analyst}
+  - {key: Merchant_Price, label: Merchant solar price after the PPA (ERCOT, 2024), value: 24, unit: $/MWh, tag: Sourced, source: lbnl_uss_2025, note: "ERCOT solar market value 2024 (chart reading)"}
+  - {key: Merchant_Escalation, label: Merchant price escalation, value: 0.02, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: Toll_Price, label: Battery tolling payment, value: 12, unit: $/kW-month, tag: Illustrative, source: analyst, note: "ERCOT has no capacity market; the toll stands in for capacity and ancillary value"}
+  - {key: Toll_Term, label: Tolling term, value: 15, unit: years, tag: Illustrative, source: asset}
+
+Tax credits:
+  - {key: ITC_PV, label: Solar investment tax credit, value: 0.30, unit: "% of solar capex", tag: Illustrative, source: analyst, note: "Assumes construction began in time under post-2025 federal rules; stressed to 0"}
+  - {key: ITC_BESS, label: Storage investment tax credit, value: 0.30, unit: "% of battery capex", tag: Illustrative, source: analyst}
+  - {key: ITC_Transfer_Price, label: Credit transfer price, value: 0.92, unit: $ per $1 of credit, tag: Estimated, source: analyst}
+
+Tax:
+  - {key: Tax_Rate, label: Federal corporate income tax rate, value: 0.21, unit: "%", tag: Sourced, source: irc_tax, note: "Texas has no corporate income tax; the margin tax is ignored"}
+  - {key: MACRS_Y1, label: 5-year MACRS, year 1, value: 0.20, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: MACRS_Y2, label: 5-year MACRS, year 2, value: 0.32, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: MACRS_Y3, label: 5-year MACRS, year 3, value: 0.192, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: MACRS_Y4, label: 5-year MACRS, year 4, value: 0.1152, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: MACRS_Y5, label: 5-year MACRS, year 5, value: 0.1152, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: MACRS_Y6, label: 5-year MACRS, year 6, value: 0.0576, unit: "% of basis", tag: Sourced, source: irs_pub946}
+  - {key: ITC_Basis_Reduction, label: Depreciable basis reduction per $ of credit, value: 0.5, unit: ratio, tag: Sourced, source: irc_tax}
+  - {key: Equity_Hurdle, label: Sponsor after-tax equity hurdle used to set the PPA price, value: 0.08, unit: "%", tag: Estimated, source: analyst, note: "Documentation only; a test checks the base case lands on it"}
+
+Debt:
+  - {key: UST_10Y, label: 10-year Treasury, value: 0.0521, unit: "%", tag: Sourced, source: fred_dgs10}
+  - {key: Debt_Spread, label: Spread over Treasury (swapped fixed), value: 0.0175, unit: "%", tag: Estimated, source: analyst}
+  - {key: Rate_Shock, label: Interest rate shock (base = 0), value: 0.0, unit: "%", tag: Illustrative, source: analyst}
+  - {key: Tenor, label: Debt tenor from COD, value: 18, unit: years, tag: Estimated, source: analyst, note: "Inside the 20-year PPA"}
+  - {key: DSCR_P50_Target, label: Target DSCR on P50 cash flow, value: 1.35, unit: x, tag: Illustrative, source: asset}
+  - {key: DSCR_P90_Target, label: Target DSCR on P90 cash flow, value: 1.00, unit: x, tag: Illustrative, source: asset}
+  - {key: DSCR_Lockup, label: Distribution lock-up DSCR (proposed term), value: 1.15, unit: x, tag: Illustrative, source: analyst}
+  - {key: DSCR_Default_PF, label: Event-of-default DSCR (proposed term), value: 1.05, unit: x, tag: Illustrative, source: analyst}
+  - {key: Max_Gearing, label: Maximum debt / project capex, value: 0.70, unit: "%", tag: Estimated, source: analyst}
+  - {key: Upfront_Fee, label: Upfront financing fees, value: 0.015, unit: "% of debt", tag: Estimated, source: analyst}
+  - {key: DSRA_Months, label: Debt service reserve, value: 6, unit: months of year-1 debt service, tag: Estimated, source: analyst}
+  - {key: Capex_Overrun, label: EPC capex overrun (base = 0), value: 0.0, unit: "% of equipment capex", tag: Illustrative, source: analyst}
+  - {key: Merchant_Shock, label: Merchant price shock (base = 0), value: 0.0, unit: "%", tag: Illustrative, source: analyst}
+  - {key: Gen_Case_Z, label: "Generation case for cash flows (0 = P50; Z_P90 or Z_P99 for stress)", value: 0.0, unit: z, tag: Illustrative, source: asset}
+
+Emissions:
+  - {key: Grid_CO2e_lb_MWh, label: Grid emission rate (eGRID2022 ERCT, total output), value: 774.3, unit: lb CO2e/MWh, tag: Sourced, source: egrid2022, note: "Average, not marginal; held flat"}
+
+Scenario:
+  - {key: Case_Select, label: "Case shown (1 = Base, 2 = Downside, 3 = Severe)", value: 1, unit: switch, tag: Illustrative, source: asset, note: "Stress values sit in columns I:K; see the Scenarios tab"}
+
+Conversions:
+  - {key: Hours_Per_Year, label: Hours per year, value: 8760, unit: hours, tag: Definition, source: definition}
+  - {key: Months, label: Months per year, value: 12, unit: months, tag: Definition, source: definition}
+  - {key: kW_per_MW, label: kW per MW, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: W_per_kW, label: W per kW, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: kWh_per_MWh, label: kWh per MWh, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: lb_per_t, label: lb per metric ton, value: 2204.62, unit: ratio, tag: Definition, source: definition}
+  - {key: Tolerance, label: Check tolerance, value: 0.000001, unit: $, tag: Definition, source: definition}

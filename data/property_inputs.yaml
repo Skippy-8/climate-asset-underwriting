@@ -1,0 +1,117 @@
+# Inputs for the illustrative 150-unit multifamily acquisition + decarbonization retrofit (Washington, DC).
+# Every value is tagged Sourced / Estimated / Illustrative / Definition and cites an id in data/sources.yaml.
+# Fractions are decimals (0.05 = 5%). Money is nominal US$.
+
+Rent roll:
+  - {key: Units_Studio, label: Studio units, value: 20, unit: units, tag: Illustrative, source: asset}
+  - {key: Units_1BR, label: One-bedroom units, value: 80, unit: units, tag: Illustrative, source: asset}
+  - {key: Units_2BR, label: Two-bedroom units, value: 45, unit: units, tag: Illustrative, source: asset}
+  - {key: Units_3BR, label: Three-bedroom units, value: 5, unit: units, tag: Illustrative, source: asset}
+  - {key: SF_Studio, label: Studio average size, value: 520, unit: sf, tag: Illustrative, source: asset}
+  - {key: SF_1BR, label: One-bedroom average size, value: 720, unit: sf, tag: Illustrative, source: asset}
+  - {key: SF_2BR, label: Two-bedroom average size, value: 1000, unit: sf, tag: Illustrative, source: asset}
+  - {key: SF_3BR, label: Three-bedroom average size, value: 1250, unit: sf, tag: Illustrative, source: asset}
+  - {key: Rent_Studio, label: Studio in-place rent, value: 1750, unit: $/month, tag: Estimated, source: hud_safmr_fy2026, note: "Set inside the FY2026 DC SAFMR range"}
+  - {key: Rent_1BR, label: One-bedroom in-place rent, value: 2050, unit: $/month, tag: Estimated, source: hud_safmr_fy2026}
+  - {key: Rent_2BR, label: Two-bedroom in-place rent, value: 2600, unit: $/month, tag: Estimated, source: hud_safmr_fy2026, note: "DC ZIP 2BR SAFMRs run $2,030-$2,620"}
+  - {key: Rent_3BR, label: Three-bedroom in-place rent, value: 3150, unit: $/month, tag: Estimated, source: hud_safmr_fy2026}
+  - {key: GFA, label: Gross floor area (for EUI), value: 150000, unit: sf, tag: Illustrative, source: asset, note: "Net rentable ~119k sf; ~80% efficiency"}
+
+Revenue and growth:
+  - {key: Vacancy_Rate, label: Vacancy and credit loss, value: 0.05, unit: "% of GPR", tag: Estimated, source: analyst}
+  - {key: Other_Income_Per_Unit, label: Other income (parking, fees), value: 1200, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Rent_Growth, label: Rent growth, value: 0.03, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: Other_Income_Growth, label: Other income growth, value: 0.025, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: Expense_Growth, label: Operating expense growth, value: 0.03, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: Tax_Growth, label: Assessed value growth, value: 0.03, unit: "%/yr", tag: Estimated, source: analyst}
+  - {key: Utility_Price_Growth, label: Utility price growth (gas and power), value: 0.025, unit: "%/yr", tag: Estimated, source: analyst}
+
+Operating expenses:
+  - {key: Assessed_Value_Per_Unit, label: Assessed value, value: 280000, unit: $/unit, tag: Estimated, source: analyst, note: "Kept independent of price so taxes do not loop through the purchase price"}
+  - {key: Tax_Rate, label: Real property tax rate (Class 1A), value: 0.0085, unit: "% of assessed", tag: Sourced, source: dc_otr_tax}
+  - {key: Insurance_Per_Unit, label: Insurance, value: 900, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Water_Sewer_Per_Unit, label: Water and sewer, value: 750, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Repairs_Per_Unit, label: Repairs and maintenance, value: 1100, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Payroll_Per_Unit, label: Payroll, value: 1800, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Admin_Per_Unit, label: G&A and marketing, value: 500, unit: $/unit/yr, tag: Estimated, source: analyst}
+  - {key: Mgmt_Fee_Pct, label: Management fee, value: 0.03, unit: "% of EGI", tag: Estimated, source: analyst}
+  - {key: Reserve_Per_Unit, label: Replacement reserves, value: 300, unit: $/unit/yr, tag: Estimated, source: analyst, note: "Agency-style underwriting level"}
+  - {key: Boiler_Replace_Cost, label: Boiler replacement (status quo only), value: 450000, unit: $, tag: Estimated, source: analyst, note: "Avoided if the plant is electrified"}
+  - {key: Boiler_Replace_Year, label: Boiler replacement year, value: 3, unit: year, tag: Illustrative, source: asset}
+
+Energy baseline:
+  - {key: Site_EUI_Base, label: Baseline site EUI, value: 59.6, unit: kBtu/sf/yr, tag: Sourced, source: estar_median, note: "Building assumed at the national multifamily median"}
+  - {key: Share_Heat_Gas, label: "End-use share: space heating (gas, central)", value: 0.28, unit: "% of site energy", tag: Estimated, source: recs_2020}
+  - {key: Share_DHW_Gas, label: "End-use share: domestic hot water (gas, central)", value: 0.22, unit: "% of site energy", tag: Estimated, source: recs_2020}
+  - {key: Share_Common_Elec, label: "End-use share: common-area electricity (owner-paid)", value: 0.12, unit: "% of site energy", tag: Estimated, source: analyst}
+  - {key: Share_Tenant_Elec, label: "End-use share: in-unit electricity (tenant-paid)", value: 0.38, unit: "% of site energy", tag: Estimated, source: recs_2020}
+  - {key: Elec_Price, label: Electricity price (commercial, DC, 2024), value: 0.1707, unit: $/kWh, tag: Sourced, source: eia_epa_2_10}
+  - {key: Gas_Price_Mcf, label: Natural gas price (commercial, DC, 2025), value: 14.36, unit: $/Mcf, tag: Sourced, source: eia_ng_dc}
+  - {key: Gas_MMBtu_Per_Mcf, label: Natural gas heat content, value: 1.026, unit: MMBtu/Mcf, tag: Sourced, source: epa_ef_hub_2025}
+
+Retrofit:
+  - {key: Boiler_Eff, label: Existing boiler seasonal efficiency, value: 0.80, unit: ratio, tag: Estimated, source: analyst}
+  - {key: COP_Heat, label: Heat pump seasonal COP, space heating, value: 2.6, unit: ratio, tag: Estimated, source: analyst, note: "Air-to-water, mixed-humid climate"}
+  - {key: COP_DHW, label: Heat pump seasonal COP, hot water, value: 2.8, unit: ratio, tag: Estimated, source: analyst}
+  - {key: Envelope_Heat_Reduction, label: Heating load reduction from envelope work, value: 0.10, unit: "% of heating load", tag: Estimated, source: analyst}
+  - {key: LED_Savings, label: Common-area electricity saved by LEDs and controls, value: 0.15, unit: "% of common kWh", tag: Estimated, source: analyst}
+  - {key: Solar_kWdc, label: Rooftop solar size, value: 180, unit: kWdc, tag: Illustrative, source: asset, note: "~15,000 sf of usable roof"}
+  - {key: Solar_Yield, label: Solar specific yield, value: 1317.7, unit: kWh/kWdc/yr, tag: Sourced, source: pvwatts_v8}
+  - {key: Solar_Capex_Per_W, label: Rooftop solar installed cost, value: 1.78, unit: $/Wdc, tag: Sourced, source: atb_2024b_commercial_pv}
+  - {key: Solar_ITC, label: Solar investment tax credit monetised, value: 0.30, unit: "% of solar capex", tag: Illustrative, source: analyst, note: "Eligibility depends on post-2025 federal rules; stressed to 0"}
+  - {key: HP_Capex_Per_Unit, label: Central heat pump plant (heat + hot water), value: 10000, unit: $/unit, tag: Estimated, source: analyst, note: "Wide uncertainty; the main retrofit sensitivity"}
+  - {key: Envelope_Capex_Per_SF, label: Envelope and air sealing, value: 1.50, unit: $/sf GFA, tag: Estimated, source: analyst}
+  - {key: LED_Capex_Per_Unit, label: LEDs and controls, value: 300, unit: $/unit, tag: Estimated, source: analyst}
+  - {key: Measure_Life, label: Measure life for $/tCO2e, value: 20, unit: years, tag: Estimated, source: analyst}
+  - {key: Gas_Retained_Share, label: Share of baseline gas kept after electrification, value: 0.0, unit: "%", tag: Illustrative, source: asset, note: "0 = heat and hot water fully electrified"}
+
+Emissions:
+  - {key: Grid_CO2e_lb_MWh, label: Grid emission rate (eGRID2022 RFCE, total output), value: 660.3, unit: lb CO2e/MWh, tag: Sourced, source: egrid2022, note: "Held flat; grid decarbonisation not modelled"}
+  - {key: NG_CO2_kg_MMBtu, label: Natural gas CO2 factor, value: 53.06, unit: kg/MMBtu, tag: Sourced, source: epa_ef_hub_2025}
+  - {key: NG_CH4_g_MMBtu, label: Natural gas CH4 factor, value: 1.0, unit: g/MMBtu, tag: Sourced, source: epa_ef_hub_2025}
+  - {key: NG_N2O_g_MMBtu, label: Natural gas N2O factor, value: 0.10, unit: g/MMBtu, tag: Sourced, source: epa_ef_hub_2025}
+  - {key: GWP_CH4, label: Global warming potential, CH4 (AR5), value: 28, unit: ratio, tag: Sourced, source: epa_ef_hub_2025}
+  - {key: GWP_N2O, label: Global warming potential, N2O (AR5), value: 265, unit: ratio, tag: Sourced, source: epa_ef_hub_2025}
+  - {key: BEPS_EUI_Cut, label: BEPS performance pathway (site EUI reduction), value: 0.20, unit: "%", tag: Sourced, source: doee_beps}
+  - {key: BEPS_Penalty_Per_SF, label: BEPS maximum penalty, value: 10, unit: $/sf, tag: Sourced, source: doee_beps}
+  - {key: BEPS_Penalty_Cap, label: BEPS penalty cap, value: 7500000, unit: $, tag: Sourced, source: doee_beps}
+
+Acquisition and exit:
+  - {key: Price, label: Purchase price, value: 47000000, unit: $, tag: Illustrative, source: asset}
+  - {key: Closing_Cost_Pct, label: Buyer closing costs incl. recordation tax, value: 0.02, unit: "% of price", tag: Estimated, source: analyst}
+  - {key: Hold_Years, label: Hold period, value: 10, unit: years, tag: Illustrative, source: asset, note: "Model columns support holds of 1-10 years"}
+  - {key: Exit_Cap, label: Exit cap rate, value: 0.0575, unit: "%", tag: Estimated, source: eqr_10k_2025, note: "REIT disposition yield 5.4% plus 35 bp for age and hold"}
+  - {key: Sale_Cost_Pct, label: Selling costs, value: 0.02, unit: "% of gross sale", tag: Estimated, source: analyst}
+
+Debt:
+  - {key: Debt_Option, label: "Loan option (1 = fixed, 2 = floating)", value: 1, unit: switch, tag: Illustrative, source: asset}
+  - {key: UST_10Y, label: 10-year Treasury, value: 0.0521, unit: "%", tag: Sourced, source: fred_dgs10}
+  - {key: Fixed_Spread, label: Fixed-rate spread over Treasury, value: 0.0170, unit: "%", tag: Estimated, source: analyst}
+  - {key: SOFR, label: SOFR, value: 0.0388, unit: "%", tag: Sourced, source: fred_sofr, note: "Held flat; no forward curve"}
+  - {key: Float_Spread, label: Floating-rate spread over SOFR, value: 0.0290, unit: "%", tag: Estimated, source: analyst}
+  - {key: SOFR_Shock, label: SOFR shock (base = 0), value: 0.0, unit: "%", tag: Illustrative, source: analyst}
+  - {key: Amort_Months, label: Amortisation, value: 360, unit: months, tag: Estimated, source: analyst}
+  - {key: IO_Years, label: Interest-only period, value: 2, unit: years, tag: Estimated, source: analyst}
+  - {key: LTV_Max, label: Maximum loan-to-value, value: 0.65, unit: "%", tag: Estimated, source: analyst}
+  - {key: DSCR_Sizing, label: Sizing DSCR (on amortising constant), value: 1.25, unit: x, tag: Estimated, source: analyst}
+  - {key: DY_Sizing, label: Minimum debt yield at sizing, value: 0.08, unit: "%", tag: Estimated, source: analyst}
+  - {key: Loan_Override, label: "Closed loan amount for stress runs (0 = size the loan)", value: 0, unit: $, tag: Illustrative, source: asset, note: "Set to the base loan to stress operations after closing"}
+  - {key: Loan_Fee_Pct, label: Loan fees, value: 0.01, unit: "% of loan", tag: Estimated, source: analyst}
+  - {key: DSCR_Trap, label: DSCR cash-trap trigger, value: 1.20, unit: x, tag: Illustrative, source: analyst}
+  - {key: DSCR_Default, label: DSCR default covenant, value: 1.10, unit: x, tag: Illustrative, source: analyst}
+  - {key: DY_Trap, label: Debt-yield cash-trap trigger, value: 0.075, unit: "%", tag: Illustrative, source: analyst}
+  - {key: DY_Default, label: Debt-yield default covenant, value: 0.065, unit: "%", tag: Illustrative, source: analyst}
+
+Scenario:
+  - {key: Case_Select, label: "Case shown (1 = Base, 2 = Downside, 3 = Severe)", value: 1, unit: switch, tag: Illustrative, source: asset, note: "Stress values sit in columns I:K; see the Scenarios tab"}
+
+Conversions:
+  - {key: Months, label: Months per year, value: 12, unit: months, tag: Definition, source: definition}
+  - {key: kBtu_per_MMBtu, label: kBtu per MMBtu, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: kWh_per_MMBtu, label: kWh per MMBtu (1e6 / 3,412.14), value: 293.0711, unit: ratio, tag: Definition, source: definition}
+  - {key: kWh_per_MWh, label: kWh per MWh, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: W_per_kW, label: W per kW, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: g_per_kg, label: g per kg, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: kg_per_t, label: kg per metric ton, value: 1000, unit: ratio, tag: Definition, source: definition}
+  - {key: lb_per_t, label: lb per metric ton, value: 2204.62, unit: ratio, tag: Definition, source: definition}
+  - {key: Tolerance, label: Check tolerance, value: 0.000001, unit: $, tag: Definition, source: definition}
