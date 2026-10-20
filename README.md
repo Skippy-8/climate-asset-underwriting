@@ -12,6 +12,11 @@ Each deal has an Excel model with live formulas, a Python engine that computes t
 memo written from the model's outputs, and a monitoring dashboard on top. Neither deal is real: the
 assets are composites, and every input is labelled with where it came from.
 
+> **Related public tool: [open-bps](https://github.com/Skippy-8/open-bps).** The property deal here tests a
+> single building against DC's Building Energy Performance Standards. open-bps applies the same kind of
+> test to every covered building in DC and Denver, using public data. It is checked against DOEE's
+> published verdicts and refreshed monthly as an open dataset.
+
 ## What's here
 
 | | Property | Solar + storage |
